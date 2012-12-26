@@ -7,4 +7,4 @@ scheduling device verification process.
 Branch status
 -------------
 
-Development branch.
+Beta branch.
