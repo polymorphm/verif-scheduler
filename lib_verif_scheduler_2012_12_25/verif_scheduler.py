@@ -69,13 +69,13 @@ def get_dates(begin_date, end_date, week_days, excl_list=None):
         
         yield date
 
-def verif_schedule(dates, verif_count, shuf_func=None):
-    if shuf_func is None:
-        shuf_func = shuf.make_shuf_indexes
+def verif_schedule(dates, verif_count, make_shuf_indexes_func=None):
+    if make_shuf_indexes_func is None:
+        make_shuf_indexes_func = shuf.make_shuf_indexes
     
     sch_dates = tuple([date, 0] for date in dates)
     
-    shuf_iter = itertools.cycle(shuf.make_shuf_indexes(len(sch_dates)))
+    shuf_iter = itertools.cycle(make_shuf_indexes_func(len(sch_dates)))
     for verif_i in range(verif_count):
         shuf_i = next(shuf_iter)
         sch_dates[shuf_i][1] += 1
