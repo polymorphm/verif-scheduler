@@ -37,11 +37,8 @@ def make_date_iter(begin_date, end_date):
             if date >= end_date:
                 return
             
-            if date < begin_date:
+            if date < begin_date or date.year != cal_year or date.month != cal_month:
                 continue
-            
-            if date.year != cal_year or date.month != cal_month:
-                break
             
             yield date
         
