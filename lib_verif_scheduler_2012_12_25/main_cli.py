@@ -68,7 +68,6 @@ def main():
     with open(args.out, 'w', encoding='utf-8', newline='\n', errors='replace') as fd:
         for sch_date in sch_dates:
             if args.use_rus_fmt:
-                fd.write('{}.{}.{}\n'.format(
-                        sch_date.day, sch_date.month, sch_date.year))
+                fd.write('{}\n'.format(sch_date.strftime('%d.%m.%Y')))
                 continue
             fd.write('{}\n'.format(sch_date))
