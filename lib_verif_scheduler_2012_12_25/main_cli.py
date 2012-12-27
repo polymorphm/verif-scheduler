@@ -21,6 +21,9 @@ import argparse
 from . import date_parser, excl_file
 from . import verif_scheduler
 
+class UserError(Exception):
+    pass
+
 def main():
     parser = argparse.ArgumentParser(
             description='utility for scheduling device verification process')
@@ -41,11 +44,16 @@ def main():
     
     args = parser.parse_args()
     
-    assert args.begin_date is not None
-    assert args.end_date is not None
-    assert args.verif_count is not None and args.verif_count > 0
-    assert args.week_days is not None
-    assert args.out is not None
+    if args.begin_date is None:
+        raise UserError('args.begin_date is None')
+    if args.end_date is None:
+        raise UserError('args.end_date is None')
+    if args.verif_count is None or args.verif_count <= 0:
+        raise UserError('args.verif_count is None or args.verif_count <= 0')
+    if args.week_days is None:
+        raise UserError('args.week_days is None')
+    if args.out is None:
+        raise UserError('args.out is None')
     
     begin_date = date_parser.parse_date(args.begin_date)
     end_date = date_parser.parse_date(args.end_date)
