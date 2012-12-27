@@ -18,6 +18,9 @@
 
 assert str is not bytes
 
+# pre-import rare modules -- need for cxfreeze
+import traceback, re
+
 from lib_verif_scheduler_2012_12_25.main_cli import main
 
 if __name__ == '__main__':
